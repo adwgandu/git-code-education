@@ -191,6 +191,36 @@ OBS.: Pode não ser interessante ter no log esse commit de MERGE, pois não foi 
 
 # Serviço da internet online para fornecer repositórios git
 # Trabalhando de forma centralizada....
-# De local para fora  n
+# De local para fora
+
+# CRIANDO UMA CHAVE PÚBLICA
+# chave para dar o push
+# criar uma chave publica e uma chave privada
+
+> ssh-keygen # cria uma chave SSH no diretório /c/Users/Ad/.ssh
+
+> cd ~/.ssh
+> ls  # gerou os arquivos id_rsa (chave privada) e id_rsa.pub (chave publica)
+
+> cat id_rsa.pub 
+ e copia o conteudo na conta do Github na internet
+
+# CRIANDO UM NOVO REPOSITÓRIO NO GITHUB
+
+ no github, entrar nos repositorios e criar um...
+ ele cria e dá uma sugestão:
+
+
+…or create a new repository on the command line
+
+echo "# git-code-education" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/adwgandu/git-code-education.git
+git push -u origin master
+
+# PRIMEIRO PUSH (empurrar... os arquivos git do computador para um repositorio central)
+
 
 
