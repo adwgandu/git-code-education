@@ -1,0 +1,196 @@
+#######   DICAS PARA O GITHUB   #######
+
+# COMEÇAR O GIT
+ clicar no icone "Git Bash"
+ mudar para o diretorio de trabalho
+> cd /Dropbox/GITHUB/aulagit
+
+# CONFIGURAÇÕES INICIAIS (só a primeira vez que abre o GitBash
+
+> git
+> git config --global user.name "Adilson Gandu"
+> git config --global user.email "adwgandu@gmail.com"
+> git config --global color.ui true
+
+# O 1o. REPOSITÓRIO
+> mkdir aulagit
+> cd aulagit
+> git init  # Cria o diretório .git nessa pasta, que é a estrutura de controle do Git para esse repositório
+
+OBS.: para ACABAR com controle de versão desse repositório, é só apagar esse diretorio .git
+> rm -rf .git
+> rmdir .git
+# para recomeçar o controle de versões:
+> git init
+
+# CRIAR E EDITAR UM ARQUIVO
+> touch arquivo.txt
+> vim arquivo.txt
+  i <- modo insert
+  Olá mundo <- escreve o que quiser
+  tecla ESC
+  :wq
+
+# OS 3 ESTÁGIOS DO COMMIT
+> git status
+
+OBS.: aparece os arquivos que estão no 1o.ESTÁGIO: de "UNTRACKED FILES"
+isto é, arquivos que não estão sendo "trackeados" ou "rastreados" ou "seguidos"
+ou passando pelo controle de versão....
+
+> git add arquivo.txt # inicia o processo para fazer parte do controle de versão
+> git status
+
+OBS.: o arquivo.txt não está mais "unytracked", ele agora no 2o.ESTÁGIO, 
+de "STAGING", de "TO BE COMMITED", isto é, pronto para ser "commitado", ou seja, pronto para 
+entrar no controle de versão.
+
+OBS.: Se quiser voltar atras:
+> git restore arquivo.txt
+
+# AGORA que já está no 2o. es
+> git commit -m "Meu primeiro commit"
+
+OBS.: o arquivo.txt foi "commitado", isto é, está no 3o.ESTAGIO e já faz
+parte do controle de versão ("COMMITED")
+
+> git status # não aparece mais o arquivo.txt para ser commitado
+
+> git log # Aparece o controle da versão, composto de:
+	um hacht (numero de identificação) desse commit, 
+        o autor,
+        a data,
+        e a mensagem usado quando commitado o arquivo.txt (-m)
+
+OBS.: SE REEDITA O ARQUIVO, TEM QUE FAZER TUDO NOVAMENTE:
+        > git status	
+        > git add arquivo.txt
+        > git commit -m "Alterando o arquivo.txt"
+        > git log # aparecem todos os commits feitos....
+
+
+# DICAS DE COMMIT
+
+> vim teste.php
+      <?="Teste";?>
+      ESC :wq
+> git status
+> git add teste.php
+
+>git commit  # Abre um editor .... Descreva o melhor possivel, simplificado 
+
+> git add .   # STAgia toodos os arquivos
+> git commit -a -m "Commitando todos os arquivos SEM PASSAR pelo ADD"
+
+
+# TRABALHANDO COM O GIT LOG
+
+> git log   #  mostra todos os commits feitos
+
+> git log -p # mostra todos os commits e AS ALTERÇÕES FEITAS em cada um
+
+> git log -p -2 # mostra os dois ultimos commits
+
+> git log --stat # mostra os git log e as ESTATISTICAS
+
+> git log --pretty=oneline # traz os commits em uma linha
+
+> git log --pretty=format:"%h - %an. %ar : %s"  # traz os commits e a quanto tempo faz
+
+> git log --since=2.days (weeks)
+
+# ARQUIVOS INDESEJADOS (uso do .gitignore)
+
+> mkdir .idea
+> touch .idea/teste
+> vim .gitignore # coloque em cada linha o arquivo que não quer que entre no commit
+       .idea
+       dicas_para_o_github.txt
+       branchs.png
+> git status   # eles não aparecem mais
+
+
+# PARA REMOVER ARQUIVO DO "TO BE COMMITED" ou seja "DESESTAGIAR"
+> git restore --staged <file>
+
+# PARA VOLTAR UM COMMIT
+> git checkout abfe3d7699e70c15001a61c9fee2fb7033f226f1
+
+# PARA VOLTAR AO BRUNCH PRINCIPAL (master)
+> git checkout master
+
+# PARA VOLTAR UM OU MAIS COMMITS ATRAS
+
+> git reset HEAD~1 --soft   # volta do commit mas deixa estagiado, pronto para ser commitado
+
+> git reset HEAD~1 --hard  # PERIGOSO PERDE TODO O COMMIT.....
+
+
+# BRANCHS
+
+> git branch # diz em que branch voce está
+
+> git checkout -b funcionalidade1 # Cria e muda para o novo branch
+
+> git branch
+
+> ls  # são os mesmos arquivos que tinhamos mas tudo o que for criado agora estará no branch funcionalidade1
+
+> vim funcionalidade1.txt   # pode editar.....
+
+> git status
+
+> git add funcionalidade1.txt 
+
+> git commit -m "Adicionando funcionalidade 1"
+
+# Para voltar ao branch principal:
+
+> git checkout master
+
+> ls  # Observar que o arquivo funcionalidade1.txt não exite (no master)
+        só no BRANCH funcionalidade1, nem aparece no git log....
+
+> vim arquivo.txt    #  Edita uma alteração
+
+> git add arquivo.txt
+
+> git commit -m "Modificando arquivo"
+
+> git log # Não tem nada da funcionalidade
+
+# Volta para o BRANCH funcionalidade1
+
+> git checkout funcionalidade1
+
+> git log  #  O que foi feito no master não aparece aqui.....
+
+### MERGE --- JUNTAR (MESCLAR COMMITS) BRAcHS
+
+> git merge funcionalidade1
+
+OBS.: Se quisesse ter incluido os commits do master para o funcionalidade1,
+      deveria entrar no funcionalidade1 (git checkout funcionalidade1)
+      e, dentro dele, faria o > git merge master
+
+> git log # Aparece o merge
+
+> ls    # ver que agora aparece o arquivo funcionalidade1.txt
+
+OBS.: Pode não ser interessante ter no log esse commit de MERGE, pois não foi feito, foi criado pelo sistema ao fazer o MERGE....
+
+> git reset HEAD~1 --hard
+
+> git log
+
+> git rebase funcionalidade1   #   Junta o commit feito dentro do funcionalidade1
+                                 e inclui no git log do master, na ordem que foi feito....
+
+
+################# GitHub ##############################
+
+# Serviço da internet online para fornecer repositórios git
+# Trabalhando de forma centralizada....
+# De local para fora  n
+
+
