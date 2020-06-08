@@ -247,6 +247,59 @@ git push -u origin master
 # Para "subir" os arquivos locais:
 > git push -u origin master
 
+# Para "subir" um novo branch
+> git branch
+> git checkout funcionalidade1
+> git push funcionalidade1
+
+
+# FAZENDO UM CLONE DE UM REPOSITÓRIO
+ - entra no github remoto
+
+- copia o URL do repositório (usar o HTTPS)
+> git clone https://github.com/adwgandu/git-code-education.git aulagit(repositório novo co nome novo)
+OBSERVAR QUE ELE SÓ TRÁS O master.... tem que trazer as funcionalidades.
+> cd aulagit
+> git branch (só aparece o master)
+> git branch -a   # mostras os branchs locais e remotos
+> git checkout -b funcionalidade1 origin/funcionalidade1
+> ls
+> git pull
+> git branch -a
+
+
+#PUSH (EMPURRAR) E PULL (PEGAR) COM NOVO BRANCH
+
+> cd aulagit
+> git checkout master
+> vim test.php (modifica o arquivo teste.php)
+> git status
+> git commit -a -m "Adicionando Ola! no phpinfo()"
+> git push origin master
+ - (Atualizar o github)
+
+> cd ..
+> cd git-code-education
+> git checkout master
+> cat teste.php (vai aparecer ainda sem a mofiicação)
+> git pull origin master
+> cat teste.php (agora aparece a alteração)
+
+Fazer a mesma cois só que agora gerando um novo arquivo dentro de uma nova funcionalidade
+> git checkout -b novobranch  # cria e entra no novo branch
+> touch arquivo-novobranch.php
+> vim arquivo-novobranch.php
+    echo "Novo branch";
+
+
+
+
+
+
+
+
+
+
 
 
 
